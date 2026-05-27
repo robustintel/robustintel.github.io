@@ -404,7 +404,6 @@
     flex-direction: column;
     justify-content: space-between;
   }
-  .pillar:hover { background: var(--bg-2); }
   .pillar:hover .pillar-num { color: var(--lime); }
   .pillar:hover .pillar-visual { transform: translateY(-4px) scale(1.03); }
 
@@ -568,6 +567,7 @@
   .cta-button:hover { background: var(--ink); transform: translateY(-2px); }
   .cta-button .arrow { transition: transform 0.3s; }
   .cta-button:hover .arrow { transform: translateX(4px); }
+  .cta-button { margin-bottom: 0; }
 
   .contact-grid {
     display: grid;
@@ -630,6 +630,221 @@
     gap: 16px;
   }
   .footer-mark { color: var(--lime); }
+
+  /* HERO PHOTO ACCENT */
+  .hero-photo-frame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0.18;
+    mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 70%);
+  }
+  .hero-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: hue-rotate(20deg) saturate(1.4) contrast(1.1);
+    mix-blend-mode: screen;
+  }
+
+  /* DOMAINS PHOTO STRIP */
+  .domains {
+    background: var(--bg);
+    padding: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .domains-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .domain-tile {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-right: 1px solid var(--line);
+    background: var(--bg-2);
+    cursor: default;
+  }
+  .domain-tile:last-child { border-right: none; }
+  .domain-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.6) contrast(1.05) brightness(0.7);
+    transition: filter 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .domain-tile:hover img {
+    filter: grayscale(0) contrast(1.1) brightness(0.95);
+    transform: scale(1.04);
+  }
+  .domain-tile::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 10, 0.85) 100%);
+    pointer-events: none;
+  }
+  .domain-label {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+    z-index: 2;
+    color: var(--ink);
+  }
+  .domain-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .domain-name {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: clamp(15px, 1.3vw, 19px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .domain-name em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--lime);
+  }
+
+  /* PILLAR PHOTO BACKGROUND */
+  .pillar-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 1;
+    pointer-events: none;
+  }
+  .pillar-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .pillar:hover .pillar-photo img {
+    transform: scale(1.04);
+  }
+  .pillar > div, .pillar > .pillar-tags {
+    position: relative;
+    z-index: 1;
+  }
+  /* Text legibility: local backing behind text only, not over photo */
+  .pillar .pillar-title,
+  .pillar .pillar-desc {
+    background: rgba(10, 10, 10, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 10px 14px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .pillar .pillar-desc {
+    display: block;
+    margin-top: 12px;
+  }
+  .pillar .pillar-num {
+    background: rgba(10, 10, 10, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 4px 14px;
+    border-radius: 4px;
+  }
+  .pillar .pillar-visual {
+    background: rgba(10, 10, 10, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .pillar .pillar-tag {
+    background: rgba(10, 10, 10, 0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  /* CTA PHOTO */
+  .cta-photo-strip {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .cta-photo-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) brightness(0.5) contrast(1.15);
+    transition: filter 0.6s;
+  }
+  .cta-photo-strip:hover img {
+    filter: grayscale(0.4) brightness(0.65) contrast(1.15);
+  }
+  .cta-photo-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    background: linear-gradient(90deg, rgba(10,10,10,0.7), rgba(10,10,10,0.3), rgba(10,10,10,0.7));
+    pointer-events: none;
+  }
+  .cta-photo-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+  .cta-photo-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 2.2vw, 32px);
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    max-width: 700px;
+    text-align: center;
+    line-height: 1.25;
+    padding: 0 24px;
+  }
+
+  /* Responsive overrides for photos */
+  @media (max-width: 1000px) {
+    .domains-grid { grid-template-columns: repeat(2, 1fr); }
+    .domain-tile:nth-child(2) { border-right: none; }
+    .domain-tile:nth-child(1), .domain-tile:nth-child(2) { border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 700px) {
+    .domains-grid { grid-template-columns: 1fr; }
+    .domain-tile { border-right: none; border-bottom: 1px solid var(--line); aspect-ratio: 16/10; }
+    .domain-tile:last-child { border-bottom: none; }
+    .cta-photo-strip { height: 200px; }
+    .hero-photo-frame { opacity: 0.12; }
+  }
 
   /* REVEAL */
   .reveal {
@@ -741,7 +956,10 @@
       </div>
 
       <div class="hero-visual reveal in d3">
-        <svg viewBox="0 0 480 480" fill="none">
+        <div class="hero-photo-frame">
+          <img src="images/ai-chip-green.jpg" alt="Glowing AI chip on a circuit board" loading="lazy" />
+        </div>
+        <svg viewBox="0 0 480 480" fill="none" style="position: relative; z-index: 1;">
           <defs>
             <radialGradient id="coreGlow" cx="0.5" cy="0.5" r="0.5">
               <stop offset="0" stop-color="#b8ff3d" stop-opacity="0.6"/>
@@ -817,6 +1035,40 @@
   </div>
 </section>
 
+<!-- DOMAINS PHOTO STRIP -->
+<section class="domains" aria-label="Where Robust Intelligence operates">
+  <div class="domains-grid">
+    <div class="domain-tile reveal">
+      <img src="images/circuit-board.jpg" alt="Macro photograph of a circuit board" loading="lazy" />
+      <div class="domain-label">
+        <span class="domain-num">D.01 / Silicon</span>
+        <div class="domain-name">Hardware <em>at the edge.</em></div>
+      </div>
+    </div>
+    <div class="domain-tile reveal d1">
+      <img src="images/drone-clouds.jpg" alt="Quadcopter drone hovering above clouds" loading="lazy" />
+      <div class="domain-label">
+        <span class="domain-num">D.02 / In the air</span>
+        <div class="domain-name">Drones &amp; <em>aerial autonomy.</em></div>
+      </div>
+    </div>
+    <div class="domain-tile reveal d2">
+      <img src="images/self-driving-car.jpg" alt="Autonomous vehicle equipped with sensors on a city street" loading="lazy" />
+      <div class="domain-label">
+        <span class="domain-num">D.03 / On the ground</span>
+        <div class="domain-name">Vehicles <em>under uncertainty.</em></div>
+      </div>
+    </div>
+    <div class="domain-tile reveal d3">
+      <img src="images/iss-orbit.jpg" alt="International Space Station orbiting Earth" loading="lazy" />
+      <div class="domain-label">
+        <span class="domain-num">D.04 / In orbit</span>
+        <div class="domain-name">Space-grade <em>intelligence.</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PILLARS -->
 <section id="pillars">
   <div class="container">
@@ -828,6 +1080,9 @@
     <div class="pillars">
 
       <div class="pillar reveal">
+        <div class="pillar-photo">
+          <img src="images/circuit-board.jpg" alt="" loading="lazy" />
+        </div>
         <div>
           <div class="pillar-head">
             <div class="pillar-num">01</div>
@@ -851,6 +1106,9 @@
       </div>
 
       <div class="pillar reveal d1">
+        <div class="pillar-photo">
+          <img src="images/processor-chip.jpg" alt="" loading="lazy" />
+        </div>
         <div>
           <div class="pillar-head">
             <div class="pillar-num">02</div>
@@ -885,6 +1143,9 @@
       </div>
 
       <div class="pillar reveal">
+        <div class="pillar-photo">
+          <img src="images/data-network.jpg" alt="" loading="lazy" />
+        </div>
         <div>
           <div class="pillar-head">
             <div class="pillar-num">03</div>
@@ -909,6 +1170,9 @@
       </div>
 
       <div class="pillar reveal d1">
+        <div class="pillar-photo">
+          <img src="images/self-driving-car.jpg" alt="" loading="lazy" />
+        </div>
         <div>
           <div class="pillar-head">
             <div class="pillar-num">04</div>
@@ -935,6 +1199,9 @@
       </div>
 
       <div class="pillar reveal">
+        <div class="pillar-photo">
+          <img src="images/smartwatch.jpg" alt="" loading="lazy" />
+        </div>
         <div>
           <div class="pillar-head">
             <div class="pillar-num">05</div>
@@ -959,6 +1226,9 @@
       </div>
 
       <div class="pillar reveal d1">
+        <div class="pillar-photo">
+          <img src="images/iss-orbit.jpg" alt="" loading="lazy" />
+        </div>
         <div>
           <div class="pillar-head">
             <div class="pillar-num">06</div>
@@ -1082,6 +1352,14 @@
       <span>Start a conversation</span>
       <span class="arrow">↗</span>
     </a>
+
+    <div class="cta-photo-strip reveal d3">
+      <img src="images/drone-clouds.jpg" alt="Drone in flight above the clouds" loading="lazy" />
+      <div class="cta-photo-overlay">
+        <div class="cta-photo-tag">Sense · Infer · Decide</div>
+        <div class="cta-photo-text">From silicon to orbit, we build the systems that have to work the first time.</div>
+      </div>
+    </div>
 
     <div class="contact-grid">
       <div class="contact-cell reveal">
